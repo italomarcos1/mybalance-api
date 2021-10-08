@@ -9,3 +9,7 @@ Route.put('update', 'UserController.update')
 Route.post('files', 'FileController.store')
 
 Route.post('sessions', 'SessionController.store')
+
+Route.get('/', () => {
+  return { greeting: 'API MeuBalanço' }
+})
