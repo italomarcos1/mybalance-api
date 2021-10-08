@@ -6,6 +6,7 @@
 
 const fs = require('fs')
 const S3 = require('aws-sdk/clients/s3')
+const { validate } = require('uuid')
 
 const client = new S3({
   region: process.env.AWS_BUCKET_REGION,
@@ -28,6 +29,8 @@ class FileController {
       if (!request.file('file')) return
 
       const { id } = request.body
+
+      console.log(validate(id))
 
       const user = await User.find(id)
 

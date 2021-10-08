@@ -4,8 +4,8 @@
 const Route = use('Route')
 
 Route.post('register', 'UserController.store')
-Route.put('update', 'UserController.update').middleware(['auth'])
+Route.put('update', 'UserController.update')
 
-Route.post('files', 'FileController.store').middleware(['auth'])
+Route.post('files', 'FileController.store')
 
 Route.post('sessions', 'SessionController.store')
