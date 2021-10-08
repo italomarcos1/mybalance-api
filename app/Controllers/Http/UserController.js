@@ -13,9 +13,9 @@ class UserController {
 
       if (findUser) throw new Error('Usuário já existe')
 
-      const user = await User.create(data)
+      const { id, username, email } = await User.create(data)
 
-      return user
+      return { id, username, email }
     } catch (err) {
       return response.status(400).json({ message: err.message })
     }
@@ -39,7 +39,9 @@ class UserController {
 
       await user.save()
 
-      return user
+      const { avatar, username, email } = user
+
+      return { avatar, username, email }
     } catch (err) {
       return response.status(400).json({ message: err.message })
     }

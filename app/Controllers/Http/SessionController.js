@@ -1,6 +1,7 @@
 'use strict'
 
 const User = use('App/Models/User')
+const Entry = use('App/Models/Entry')
 
 class SessionController {
   async store ({ request, response, auth }) {
@@ -11,9 +12,14 @@ class SessionController {
 
       if (!user) throw new Error('Usuário não existe.')
 
-      const token = await auth.attempt(email, password)
+      await auth.attempt(email, password)
 
-      return { token, user }
+      const entries = await Entry
+        .query()
+        .where('user_id', user.id)
+        .fetch()
+
+      return { entries, user }
     } catch (err) {
       return response.status(400).json({ message: 'Combinação email/senha não batem.' })
     }
