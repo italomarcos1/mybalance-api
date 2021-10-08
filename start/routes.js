@@ -10,6 +10,9 @@ Route.post('files', 'FileController.store')
 
 Route.post('sessions', 'SessionController.store')
 
+Route.post('entry', 'EntryController.store')
+Route.post('entries', 'EntryController.index')
+
 Route.get('/', () => {
   return { greeting: 'API MeuBalanço' }
 })
