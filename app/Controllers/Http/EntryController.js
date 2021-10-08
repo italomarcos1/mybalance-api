@@ -21,13 +21,13 @@ class EntryController {
 
   async store ({ request, response }) {
     try {
-      const { id, ...data } = request.all()
+      const { user_id, ...data } = request.all()
 
-      const user = await User.find(id)
+      const user = await User.find(user_id)
 
       if (!user) throw new Error('Usuário não encontrado')
 
-      const newEntry = await Entry.create({ ...data, user_id: id })
+      const newEntry = await Entry.create({ ...data, user_id })
 
       return newEntry
     } catch (err) {
