@@ -41,7 +41,7 @@ class FileController {
       if (!allowedSubtypes.includes(upload.subtype)) throw new Error('Envie uma imagem válida (JPG ou PNG).')
       if (upload.size > 4194304) throw new Error('Envie uma imagem de no máximo 4MB.')
 
-      const fileName = `${id}.${upload.subtype}`
+      const fileName = `${id}-${Date.now()}.${upload.subtype}`
 
       const fileStream = fs.createReadStream(upload.tmpPath)
 
