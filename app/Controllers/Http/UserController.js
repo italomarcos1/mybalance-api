@@ -39,9 +39,9 @@ class UserController {
 
       await user.save()
 
-      const { avatar, username, email } = user
+      const { username } = user
 
-      return { avatar, username, email }
+      return { username }
     } catch (err) {
       return response.status(400).json({ message: err.message })
     }
